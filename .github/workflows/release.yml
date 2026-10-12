@@ -2,7 +2,7 @@ name: release
 
 # Versions only — nothing here publishes to a registry. A plugin's version lives in its package.json;
 # on each push to main with pending changesets, this opens or updates a "Version Packages" pull request
-# whose `npm run version` applies them and syncs each version into plugin.json and marketplace.json.
+# whose `pnpm run version` applies them and syncs each version into plugin.json and marketplace.json.
 # Merging that pull request is the release; `claude plugin tag <plugin>` then marks it, by hand.
 on:
   push:
@@ -19,14 +19,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: npm
-      - run: npm ci
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - uses: changesets/action@v1
         with:
-          version: npm run version
+          version: pnpm run version
           title: Version Packages
           commit: Version Packages
         env:

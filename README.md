@@ -38,7 +38,7 @@ resumes a plan across a compaction) only runs inside Claude Code.
 ## Versions
 
 Each plugin is versioned on its own, and its changes are recorded in its `CHANGELOG.md`. Every change
-carries a changeset (`npx changeset`); `npm run version` applies them and copies each new version into the
+carries a changeset (`pnpm changeset`); `pnpm run version` applies them and copies each new version into the
 plugin manifests. `vibe-ops check` catches drift between them before it ships.
 
 ## License

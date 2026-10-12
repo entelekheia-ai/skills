@@ -1,0 +1,8 @@
+# Mirror of "workspaces" in package.json, which scripts/sync-versions.mjs and the .vibe-ops gates read
+# directly. Change both together.
+packages:
+  - delegation
+  - method
+  - publishing
+  - machine
+  - release

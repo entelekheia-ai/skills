@@ -38,12 +38,12 @@ The `entelekheia` Claude Code marketplace: small plugins, one folder each, insta
 ## Releases
 
 - **A plugin's version lives in its `package.json`**, which exists only so changesets can bump it. Never edit
-  the version in `plugin.json` or `marketplace.json` by hand: `npm run version` applies the pending
+  the version in `plugin.json` or `marketplace.json` by hand: `pnpm run version` applies the pending
   changesets and `scripts/sync-versions.mjs` copies each version into both. `vibe-ops check` catches drift
   between them (`manifest-versions`) but cannot repair it: `vibe-ops check` never forwards `--fix` to a
   composed ops, and a local ops declared by a relative path — this repository's own — cannot be addressed
   by name for the ops runner's own `--fix` either. `scripts/sync-versions.mjs` stays the repair.
-- **Every change to a plugin carries a changeset** (`npx changeset`), written when the change is made. A new
+- **Every change to a plugin carries a changeset** (`pnpm changeset`), written when the change is made. A new
   plugin folder is added to `workspaces` in the root `package.json` and to the catalog in the same change.
 - **Before a release, each plugin being released has been used on real work since its last release.**
   The catalog has no downstream test suite; that use is the gate.
