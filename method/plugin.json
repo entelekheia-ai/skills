@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "method",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Carry a plan through its remaining tracks unattended, paced against the usage limit and the context window, with maintainer questions batched instead of asked one at a time.",
   "author": {
     "name": "Danilo Borges",

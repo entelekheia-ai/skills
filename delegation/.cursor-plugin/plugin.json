@@ -1,6 +1,6 @@
 {
   "name": "delegation",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Decide where delegated work runs and on which model, and carry it across the hand-off.",
   "homepage": "https://github.com/entelekheia-ai/skills/tree/main/delegation",
   "repository": "https://github.com/entelekheia-ai/skills",
