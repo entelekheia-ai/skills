@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "release",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Release channels for npm packages: adopt a stable and beta channel policy, promote beta to stable, and take a never-published repository to publishing itself from CI through npm trusted publishing.",
   "author": {
     "name": "Danilo Borges",
