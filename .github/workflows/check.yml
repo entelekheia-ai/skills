@@ -28,5 +28,6 @@ jobs:
       - name: Script tests
         run: node --test delegation/scripts/*.test.mjs delegation/skills/*/scripts/*.test.mjs
       - name: Every changed plugin carries a changeset
-        if: github.event_name == 'pull_request'
+        # The Version Packages pull request consumes the changesets, so it carries none by construction.
+        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/')
         run: pnpm changeset status --since origin/${{ github.base_ref }}
