@@ -23,17 +23,38 @@ claude plugin marketplace add entelekheia-ai/skills
 claude plugin install delegation@entelekheia
 ```
 
-In any agent that reads Agent Skills (Codex, Cursor, OpenCode, Gemini CLI and others) — skills only:
+Every plugin also carries a root `plugin.json` in the [Agent Plugins](https://agent-plugins.org) format, so
+the clients that read it install the whole plugin, not only its skills:
+
+```sh
+# OpenAI Codex — add the catalog, then install from the plugin directory
+codex plugin marketplace add entelekheia-ai/skills
+# GitHub Copilot CLI
+copilot plugin marketplace add entelekheia-ai/skills && copilot plugin install delegation@entelekheia
+# Google Antigravity CLI
+git clone https://github.com/entelekheia-ai/skills && agy plugin install ./skills/delegation   # one plugin per directory
+```
+
+Cursor imports the catalog at `.cursor-plugin/marketplace.json` from the repository. A plugin with subagents carries a Cursor layer (`.cursor-plugin/plugin.json` and `.cursor-plugin/agents/`) generated from its `agents/`; the read-only hook guard does not run there, so `delegation`'s `reviewer`, `fact-sheet` and `plan-scout` can write files in Cursor. Only `delegation-miner` and `publishing-extraction-auditor` run there with `readonly: true`, because they declare no write tool. Cursor may also discover `hooks/hooks.json` by folder; Claude's event names are not Cursor's, so those hooks are expected to stay inert there, which no run has confirmed. A manual-only skill (`disable-model-invocation`) carries `agents/openai.yaml` so Codex stays manual too; Antigravity and Cursor document no equivalent and may select such a skill themselves. In any other agent that
+reads Agent Skills (OpenCode, Gemini CLI, Windsurf and others) — skills only:
 
 ```sh
 npx skills add entelekheia-ai/skills
 ```
 
-That channel carries no agents and no hooks: `delegation`'s subagents and its read-only guard,
-`method`'s plan-resume and skill-notes hooks, and `publishing`'s audit and apply agents do not install
-this way. Every skill works without them — where a skill mentions one, it says what to do in its
-absence — but the plugin's own automation (the guard that keeps an agent read-only, the hook that
-resumes a plan across a compaction) only runs inside Claude Code.
+What each channel carries:
+
+| Channel | Skills | Subagents | Hooks |
+|---|---|---|---|
+| Claude Code | yes | yes | yes |
+| Antigravity | yes | yes | no |
+| Cursor | yes | yes, as `<plugin>-<agent>` | no |
+| Codex, Copilot CLI | yes | no | no |
+| `npx skills add` | yes | no | no |
+
+Every skill works without the agents and hooks — where a skill mentions one, it says what to do in its
+absence — but the plugin's own automation (the guard that keeps an agent read-only, the hook that resumes a
+plan across a compaction) only runs inside Claude Code.
 
 ## Versions
 

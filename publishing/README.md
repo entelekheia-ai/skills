@@ -10,6 +10,7 @@ text, verify it mechanically and with a blind review, and release it into a plug
 | Command | Fires when |
 |---|---|
 | `/publishing:publish` | Deciding which of your own skills or agents are worth sharing; a private skill is about to become public. |
+| `/publishing:make-portable` | A plugin installs in one coding agent and must install in Codex, Copilot CLI, Cursor and Antigravity too: a root Agent Plugins manifest, a catalog per client, a generated Cursor layer for subagents, and an honest table of what each client receives. Manual only. |
 
 ## Agents
 
