@@ -1,0 +1,81 @@
+{
+  "name": "entelekheia",
+  "interface": {
+    "displayName": "entelekheia"
+  },
+  "plugins": [
+    {
+      "name": "delegation",
+      "source": {
+        "source": "local",
+        "path": "./delegation"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "method",
+      "source": {
+        "source": "local",
+        "path": "./method"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "publishing",
+      "source": {
+        "source": "local",
+        "path": "./publishing"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "vibe-ops",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/entelekheia-ai/vibe-ops.git",
+        "path": "./plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "machine",
+      "source": {
+        "source": "local",
+        "path": "./machine"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "release",
+      "source": {
+        "source": "local",
+        "path": "./release"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

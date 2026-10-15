@@ -1,4 +1,5 @@
 {
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "machine",
   "version": "0.2.0",
   "description": "Keep a development machine working: reclaim disk by excluding regenerable caches from Time Machine and thinning the snapshots that pin them, and restore the VS Code agents panel when its model picker comes up empty.",
@@ -6,8 +7,13 @@
     "name": "Danilo Borges",
     "url": "https://github.com/daniloborges"
   },
-  "skills": [
-    "./skills/dev-storage",
-    "./skills/repair-agent-host"
+  "homepage": "https://github.com/entelekheia-ai/skills/tree/main/machine",
+  "repository": "https://github.com/entelekheia-ai/skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "macos",
+    "disk",
+    "time-machine",
+    "vscode"
   ]
 }

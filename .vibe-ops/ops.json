@@ -11,15 +11,39 @@
           "manifest-version-drift",
           "manifest-marketplace-missing",
           "manifest-marketplace-orphan",
-          "manifest-codex-skills-mismatch"
+          "manifest-portable-invalid",
+          "manifest-catalog-stale"
         ],
         "files": {
           "package.json": "{\n  \"name\": \"fixture\",\n  \"private\": true,\n  \"workspaces\": [\n    \"plugin-a\"\n  ]\n}\n",
           "plugin-a/package.json": "{\n  \"name\": \"plugin-a\",\n  \"version\": \"0.2.0\"\n}\n",
           "plugin-a/.claude-plugin/plugin.json": "{\n  \"name\": \"plugin-a\",\n  \"version\": \"0.1.0\"\n}\n",
-          "plugin-a/.codex-plugin/plugin.json": "{\n  \"name\": \"plugin-a\",\n  \"version\": \"0.1.0\",\n  \"skills\": [\n    \"./skills/gone\"\n  ]\n}\n",
-          "plugin-a/skills/here/SKILL.md": "---\nname: here\n---\n",
-          ".claude-plugin/marketplace.json": "{\n  \"plugins\": [\n    {\n      \"name\": \"orphan-plugin\",\n      \"source\": \"./missing-dir\",\n      \"version\": \"0.0.1\"\n    }\n  ]\n}\n"
+          ".claude-plugin/marketplace.json": "{\n  \"name\": \"fx\",\n  \"owner\": {\n    \"name\": \"x\"\n  },\n  \"metadata\": {\n    \"description\": \"d\"\n  },\n  \"plugins\": [\n    {\n      \"name\": \"orphan-plugin\",\n      \"source\": \"./missing-dir\",\n      \"version\": \"0.0.1\"\n    }\n  ]\n}\n",
+          "plugin-a/plugin.json": "{\n  \"$schema\": \"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json\",\n  \"name\": \"other-name\",\n  \"version\": \"0.1.0\"\n}\n",
+          ".agents/plugins/marketplace.json": "{}\n",
+          ".cursor-plugin/marketplace.json": "{}\n"
+        }
+      }
+    },
+    {
+      "gate": "./.vibe-ops/gates/manifest-versions/index.mjs",
+      "label": "manifest-versions-cursor-layer",
+      "fixture": {
+        "expect": [
+          "manifest-catalog-stale"
+        ],
+        "files": {
+          "package.json": "{\n  \"name\": \"fx\",\n  \"private\": true,\n  \"workspaces\": [\n    \"plugin-b\"\n  ]\n}\n",
+          "plugin-b/package.json": "{\n  \"name\": \"plugin-b\",\n  \"version\": \"0.1.0\"\n}\n",
+          "plugin-b/.claude-plugin/plugin.json": "{\n  \"name\": \"plugin-b\",\n  \"version\": \"0.1.0\"\n}\n",
+          "plugin-b/plugin.json": "{\n  \"$schema\": \"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json\",\n  \"name\": \"plugin-b\",\n  \"version\": \"0.1.0\"\n}\n",
+          "plugin-b/agents/helper.md": "---\nname: helper\ndescription: d\ntools: Read\n---\nbody\n",
+          ".claude-plugin/marketplace.json": "{\n  \"name\": \"fx\",\n  \"owner\": {\n    \"name\": \"x\"\n  },\n  \"metadata\": {\n    \"description\": \"d\"\n  },\n  \"plugins\": [\n    {\n      \"name\": \"plugin-b\",\n      \"source\": \"./plugin-b\",\n      \"description\": \"b\",\n      \"version\": \"0.1.0\"\n    }\n  ]\n}\n",
+          ".agents/plugins/marketplace.json": "{\n  \"name\": \"fx\",\n  \"interface\": {\n    \"displayName\": \"fx\"\n  },\n  \"plugins\": [\n    {\n      \"name\": \"plugin-b\",\n      \"source\": {\n        \"source\": \"local\",\n        \"path\": \"./plugin-b\"\n      },\n      \"policy\": {\n        \"installation\": \"AVAILABLE\",\n        \"authentication\": \"ON_INSTALL\"\n      },\n      \"category\": \"Developer Tools\"\n    }\n  ]\n}\n",
+          ".cursor-plugin/marketplace.json": "{\n  \"name\": \"fx\",\n  \"owner\": {\n    \"name\": \"x\"\n  },\n  \"metadata\": {\n    \"description\": \"d\"\n  },\n  \"plugins\": [\n    {\n      \"name\": \"plugin-b\",\n      \"source\": \"plugin-b\",\n      \"description\": \"b\"\n    }\n  ]\n}\n",
+          "plugin-b/.cursor-plugin/agents/plugin-b-ghost.md": "generated file with no source agent\n",
+          "plugin-b/.cursor-plugin/plugin.json": "{\n  \"name\": \"plugin-b\",\n  \"version\": \"0.1.0\",\n  \"skills\": \"./skills\",\n  \"agents\": \"./.cursor-plugin/agents\"\n}\n",
+          "plugin-b/.cursor-plugin/agents/plugin-b-helper.md": "---\nname: plugin-b-helper\ndescription: d\nmodel: inherit\nreadonly: true\n---\nbody\n"
         }
       }
     },
