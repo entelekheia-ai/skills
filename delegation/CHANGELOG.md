@@ -1,5 +1,11 @@
 # delegation
 
+## 0.3.1
+
+### Patch Changes
+
+- 1b3b668: `audit-delegations`: `agent-runs.mjs` no longer records whether a dispatch asked for `run_in_background`, a parameter the Agent tool no longer offers.
+
 ## 0.3.0
 
 ### Minor Changes
