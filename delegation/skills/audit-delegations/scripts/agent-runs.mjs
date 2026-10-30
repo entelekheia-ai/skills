@@ -135,7 +135,7 @@ for (const f of files) {
     for (const b of content) {
       if (b.type === "tool_use" && b.name === "Agent" && !calls.has(b.id)) {
         const matched = matchAgentName(b.input?.subagent_type, agents)
-        if (matched) calls.set(b.id, { name: matched, ts: r.timestamp || "", background: b.input.run_in_background !== false })
+        if (matched) calls.set(b.id, { name: matched, ts: r.timestamp || "" })
       }
       if (b.type === "tool_result") {
         const m = text(b.content).match(/agentId:\s*([a-z0-9]+)/)
