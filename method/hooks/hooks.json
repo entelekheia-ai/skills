@@ -32,5 +32,8 @@
         ]
       }
     ]
-  }
+  },
+  "modules": [
+    "./register.tsx"
+  ]
 }

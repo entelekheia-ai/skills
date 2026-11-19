@@ -23,6 +23,19 @@ what a piece of work taught to the surface built for that kind of fact.
 | `SessionStart` (matcher `compact`) | After a compaction, if a `run-plan` run was in progress, tells the user the one command that resumes it and instructs the model to invoke it first. |
 | `PostToolUse` (matcher `Skill`) | When the model loads a skill through the Skill tool, hands it the notes kept for that skill (user, repository and local scopes, each labelled by where it came from) beside the skill's own text; a notes file behind a symbolic link is skipped, and each is capped at 16 KB. |
 
+## Interface
+
+While a `run-plan` run is in progress, a mod draws it in the Claude Code interface. It only reads the run's
+state file and never writes it.
+
+| Where | What it shows |
+|---|---|
+| Band above the prompt | The plan's name, a bar of finished tracks out of the total, the running (or next runnable) track and the count of open questions; a **tracks** button (hotkey `3`) opens the pane. Absent when no run is in progress. |
+| Pane, the `plan-run` command | Each track with its status, who runs it, its task file, what it waits on and its commits; open questions; whether the learnings were routed once every track is done. |
+
+The state is read again right after any `state.sh` call and every 15 seconds. Drawing needs a Claude Code
+release with mods; on an older one the skills and hooks above work as before.
+
 ## Requirements
 
 `jq` on `PATH` for the `run-plan` and `skill-notes` hooks; each is silent (never blocking) when `jq` is
