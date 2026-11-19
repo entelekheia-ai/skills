@@ -95,7 +95,7 @@ three ways to raise it mid-session cost very differently, because of how prompt 
 
 | Raise by | What it costs |
 |---|---|
-| **Effort** — `/effort`, or a skill whose frontmatter sets `effort:` | On Opus 5.5 and Fable 5.1, nothing: Claude Code applies the change per message and keeps the cache. On other models it invalidates the cache |
+| **Effort** — `/effort`, or a skill whose frontmatter sets `effort:` | On Opus 5.5 and Fable 5.2, nothing: Claude Code applies the change per message and keeps the cache. On other models it invalidates the cache |
 | **A subagent** on a stronger model | The session's cache is untouched; the subagent starts cold on its own brief, and the session pays for writing the brief and reading the report |
 | **A model switch** — `/model`, `opusplan` entering or leaving plan mode, or a skill whose frontmatter sets `model:` (that turn only; the session model resumes on the next prompt) | The whole context is reprocessed, **twice**: each model has its own cache, so the switch misses it, and the return usually misses too, because the API looks back at most 20 blocks for an earlier cache entry |
 
@@ -163,8 +163,10 @@ Every row starts on `basis: shipped default`; `update` replaces that with your o
 must run, design, contest the premise → `opus`, `high`–`xhigh` — start at `high` and let a gate failure
 raise it, the same escalation Step 4 uses. If the shape recurs, give it a row with `update`.
 
-**Never route a subagent above `opus`.** No shape of delegated work needs Fable 5.1 in a subagent; a task
-that fails at the top of the ladder returns to the main loop instead (Step 4).
+**Never route a subagent above `opus`.** The reason is cost: Fable 5.2 costs twice Opus 5.5 per token
+(USD 8/40 against USD 4/20 per million), and no shape of delegated work has been measured to need it. Run
+Fable when you choose it for one task — a review of Opus's work, or a problem Opus did not settle — as the
+main loop. A task that fails at the top of the ladder returns to the main loop instead (Step 4).
 
 ### Step 3 — Write the call
 
@@ -208,7 +210,8 @@ const rev   = await agent(`Review the diff adversarially …`, { label: 'review'
 **Effort reaches a subagent only through a Workflow `agent()` site or an `effort:` field in a subagent
 definition's frontmatter.** The `Agent` tool takes no effort argument: its subagent runs at the level Claude
 Code resolves for that model, and the subagent's transcript records which. Omit effort on Haiku 4.5 — the
-API rejects it. Opus 5.5 defaults to `medium`; Sonnet 5, Opus 5 and Fable 5.1 default to `high`.
+API rejects it. In Claude Code, Opus 5.5, Sonnet 5.5, Haiku 5.5 and Fable 5.2 default to `medium`; Sonnet 5 and Opus 5
+default to `high`. On the Claude API, Sonnet 5.5 and Fable 5.2 default to `high`.
 
 **Before writing any brief, read `references/brief-clauses.md`.** Its clauses — let the agent contest the
 brief with `file:line`, state a scope as a limit, allow a refusal — each catch a failure that a model
