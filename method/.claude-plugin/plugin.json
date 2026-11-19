@@ -13,5 +13,5 @@
     "pacing",
     "workflow"
   ],
-  "hooks": "./hooks/hooks.json"
+  "types": "./types/index.d.ts"
 }
