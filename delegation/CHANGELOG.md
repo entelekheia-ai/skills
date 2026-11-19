@@ -1,5 +1,12 @@
 # delegation
 
+## 0.3.1
+
+### Patch Changes
+
+- 1b3b668: `audit-delegations`: `agent-runs.mjs` no longer records whether a dispatch asked for `run_in_background`, a parameter the Agent tool no longer offers.
+- 43bc2f1: `route-work`: the lineup facts move from Fable 5.1 to Fable 5.2 — effort keeps the cache on it, it defaults to `medium` in Claude Code and `high` on the Claude API, and the rule against routing a subagent above `opus` now states its reason as cost (Fable 5.2 at twice Opus 5.5 per token).
+
 ## 0.3.0
 
 ### Minor Changes

@@ -13,7 +13,7 @@
       "name": "delegation",
       "source": "./delegation",
       "description": "Decide where delegated work runs and on which model, and carry it across the hand-off.",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "category": "development",
       "keywords": [
         "subagents",
@@ -26,7 +26,7 @@
       "name": "method",
       "source": "./method",
       "description": "Carry a plan through its remaining tracks unattended, paced against the usage limit and the context window, with maintainer questions batched instead of asked one at a time.",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "category": "development",
       "keywords": [
         "plans",
